@@ -17,6 +17,9 @@ $ make init
 
 These command run app completely with webserver and database
 
+## Additional
+If you want use roadrunner then uncomment roadrunner section in [docker-compose.yml file](docker-compose.yml)
+
 ## Credits
 
 - [Dmitrii Denisov][link-author]

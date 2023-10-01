@@ -39,5 +39,22 @@ services:
     ports:
       - "5432:5432"
 
+#  Roadrunner Service
+#  roadrunner:
+#    build:
+#      context: .
+#      dockerfile: ./docker/roadrunner/Dockerfile
+#    volumes:
+#      - "./:/var/www/app"
+#      - "./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+#    working_dir: "/var/www/app"
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+#    command: "/bin/rr serve"
+#    ports:
+#      - "8181:8080"
+#    depends_on:
+#      - db
+
 networks:
   default:
