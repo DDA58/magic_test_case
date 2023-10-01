@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{# @var testResult \DDA58\MagicTestCase\TestResult\Application\Dto\ShowTestResultDto #}
+
+{% block title %}Result of {{ testResult.testName }}{% endblock %}
+
+{% block body %}
+    <h1>Result of {{ testResult.testName }}</h1>
+    <h3>Correct questions:</h3>
+    <ul>
+        {% for questionName in testResult.correctQuestions %}
+            <li>{{ questionName }}</li>
+        {% else %}
+            <li><em>No correct questions found</em></li>
+        {% endfor %}
+    </ul>
+    <h3>Uncorrect questions:</h3>
+    <ul>
+        {% for questionName in testResult.uncorrectQuestions %}
+            <li>{{ questionName }}</li>
+        {% else %}
+            <li><em>No uncorrect questions found</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

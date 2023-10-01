@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+#  PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - "./:/var/www/app"
+      - "./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+    working_dir: "/var/www/app"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+
+#  Nginx Service
+  webserver:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - "./public:/var/www/app/public"
+      - "./docker/nginx/magicproject.loc.conf:/etc/nginx/conf.d/magicproject.loc.conf"
+    ports:
+      - "80:80"
+
+#  Postgres Service
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - "./docker/data/postgres:/var/lib/postgresql/data:rw"
+      - "./docker/postgres/init.sql:/docker-entrypoint-initdb.d/1-schema.sql"
+    ports:
+      - "5432:5432"
+
+networks:
+  default:

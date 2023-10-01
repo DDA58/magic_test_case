@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{# @var test \DDA58\MagicTestCase\Test\Application\Dto\TestDto #}
+
+{% block title %}{{ test.name }}{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const testHelper = {
+            onSubmit() {
+                document.querySelectorAll('input[type="submit"]').forEach(el => el.disabled = true)
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ test.name }}</h1>
+    <form action="{{ path('save_test_result', {'testId' : test.id}) }}" method="POST" autocomplete="off"
+          onsubmit="testHelper.onSubmit()">
+        {% for question in test.questions %}
+
+            <div style="display: flex; align-items: center">
+                <div style="display: inline-block; vertical-align: middle">
+                    <h3>{{ question.question }}</h3>
+                </div>
+                <div>
+                    {% for option in question.options %}
+                        <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ option.id }}"
+                               id="question{{ question.id }}"/>
+                        <label for="question{{ question.id }}">{{ option.option }}</label>
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

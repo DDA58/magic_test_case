@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}404{% endblock %}
+
+{% block body %}
+    <p class="important">
+        {{ message|default('Bad request') }}
+    </p>
+{% endblock %}

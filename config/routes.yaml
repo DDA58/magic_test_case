@@ -1,0 +1,7 @@
+ControllerTest:
+    resource: ../src/Test/Application/Controller/
+    type: attribute
+
+ControllerTestResult:
+    resource: ../src/TestResult/Application/Controller/
+    type: attribute
