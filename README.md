@@ -17,6 +17,12 @@ $ make init
 
 These command run app completely with webserver and database
 
+## Routes with UI
+```text
+/test/1 - Show test with id = 1
+/result/{id} - Show test result with {id} = uuid
+```
+
 ## Additional
 If you want use roadrunner then uncomment roadrunner section in [docker-compose.yml file](docker-compose.yml)
 
